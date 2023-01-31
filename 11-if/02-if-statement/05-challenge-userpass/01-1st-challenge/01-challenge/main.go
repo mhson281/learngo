@@ -8,6 +8,8 @@
 
 package main
 
+import ("os" ; "fmt")
+
 // ---------------------------------------------------------
 // CHALLENGE #1
 //  Create a user/password protected program.
@@ -33,5 +35,38 @@ package main
 //    Access granted to "jack".
 // ---------------------------------------------------------
 
+type users struct {
+    username, password string
+}
+
+const (
+    username = "jack"
+    password = "1888"
+    usage = `Usage: [username] [password]`
+    wrongUser = "Access denied for %q.\n"
+    wrongPass = "Invalid password for %q.\n"
+    acceptAccess = "Access granted to %q.\n"
+)
+
 func main() {
+    argsLength := len(os.Args)
+    args := os.Args
+
+    if argsLength != 3 {
+        fmt.Println(usage)
+        return
+    }
+
+
+    u, p := args[1], args[2]
+
+    user1 := users{u, p}
+
+    if user1.username != username {
+        fmt.Printf(wrongUser, user1.username)
+    } else if user1.password != password {
+        fmt.Printf(wrongPass, user1.password)
+    } else {
+        fmt.Printf(acceptAccess, user1.username)
+    }
 }
