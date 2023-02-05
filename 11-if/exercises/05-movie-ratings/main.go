@@ -51,6 +51,31 @@ package main
 //  go run main.go -5
 //    Wrong age: "-5"
 // ---------------------------------------------------------
+import (
+    "os"
+    "fmt"
+    "strconv"
+)
 
 func main() {
+    if len(os.Args) != 2 {
+        fmt.Println("Please enter your age")
+        return
+    }
+
+    age, err := strconv.Atoi(os.Args[1])
+    
+    if err != nil {
+        fmt.Println("Please type a positive number")
+        return
+    } else if age < 0 {
+         fmt.Printf("Wrong age: %q", age)
+    } else if age > 17 {
+        fmt.Println("R-Rated")                                     
+    } else if age < 13 {
+        fmt.Println("PG-Rated")
+    } else {
+        fmt.Println("PG-13")
+    }
+    
 }

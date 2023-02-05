@@ -18,5 +18,13 @@ package main
 //  Sum: 55
 // ---------------------------------------------------------
 
+import "fmt"
+
 func main() {
+    var sum int
+    max := 11
+    for i := 0; i < max; i++ {
+        sum += i
+    } 
+    fmt.Printf("sum of 1-10 = %d", sum)
 }

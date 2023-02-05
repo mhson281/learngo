@@ -42,7 +42,33 @@ package main
 //  go run main.go genius "mr. charles darwin"
 //    Unknown command: "genius"
 // ---------------------------------------------------------
+import (
+    "strings"
+    "fmt"
+    "os"
+)
+
+const (
+    usage = `[command] [string]
+Available commands: lower, upper and title`
+)
 
 func main() {
+    if len(os.Args) != 3 {
+        fmt.Println(usage)
+        return
+    }
 
+    command, string := os.Args[1], os.Args[2]
+
+    switch command {
+        case "lower":
+        fmt.Println(strings.ToLower(string))
+        case "upper":
+        fmt.Println(strings.ToUpper(string))
+        case "title":
+        fmt.Println(strings.Title(string))
+        default:
+        fmt.Printf("Unknown command: %q", command)
+    }
 }

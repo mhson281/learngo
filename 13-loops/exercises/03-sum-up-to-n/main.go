@@ -34,6 +34,41 @@ package main
 //
 //    1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
 // ---------------------------------------------------------
+import (
+    "strconv"
+    "fmt"
+    "os"
+)
 
 func main() {
+    if len(os.Args) != 3 {
+        fmt.Println("Please enter a min and max: go run main.go [min] [max]")
+        return
+    }
+
+    var sum int
+    min,err := strconv.Atoi(os.Args[1])
+    if err != nil {
+        fmt.Println("Please enter a minimum number larger than 0")
+        return
+    }
+    max, err := strconv.Atoi(os.Args[2])
+    if err != nil {
+        return
+    }
+
+    if min >= max {
+        fmt.Println("Please enter a maximum number larger than minimum")
+        return
+    }
+
+    for i := min; i <= max; i++ {
+        fmt.Print(i)
+        sum += i
+        if i < max {
+            fmt.Print(" + ")
+        }
+    }
+
+    fmt.Println(" = ", sum)
 }

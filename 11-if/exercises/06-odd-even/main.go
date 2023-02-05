@@ -36,5 +36,28 @@ package main
 //    "ABC" is not a number
 // ---------------------------------------------------------
 
+import (
+    "os"
+    "strconv"
+    "fmt"
+) 
+
+
 func main() {
+    if len(os.Args) != 2 {
+        fmt.Println("Pick a number")
+        return
+    }
+
+    num, err := strconv.Atoi(os.Args[1])
+
+    if err != nil || num <= 0{
+        fmt.Printf("%q is not a number or it is less than 0", os.Args[1])
+    } else if num % 2 == 0 && num % 8 == 0 {
+        fmt.Printf("%d is an even number and it's divisible by 8", num)
+    } else if num % 2 == 0 {
+        fmt.Printf("%d is an even number", num)
+    } else {
+        fmt.Printf("%d is an odd number", num)
+    } 
 }

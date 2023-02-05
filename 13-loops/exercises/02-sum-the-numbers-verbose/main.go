@@ -25,5 +25,19 @@ package main
 //    1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
 // ---------------------------------------------------------
 
+import "fmt"
+
 func main() {
+    var sum int
+    min, max := 1, 10
+
+    for i := min; i <= max; i++ {
+        sum += i
+        
+        fmt.Print(i)
+        if i < max {
+            fmt.Print(" + ")
+        }
+    }
+    fmt.Printf(" = %d\n", sum)
 }
