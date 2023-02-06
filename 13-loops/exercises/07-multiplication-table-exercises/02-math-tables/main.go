@@ -103,6 +103,74 @@ package main
 //
 //     go run main.go "*" 4
 // ---------------------------------------------------------
+import ("fmt"; "os"; "strconv"; "strings")
+
+const (
+	validOps = "%*/+-"
+
+	usageMsg       = "Usage: [op=" + validOps + "] [size]"
+	sizeMissingMsg = "Size is missing"
+	invalidOpMsg   = `Invalid operator.
+Valid ops one of: ` + validOps
+
+	invalidOp = -1
+)
 
 func main() {
+    args := os.Args[1:]
+    switch l := len(args); {
+    case l == 1:
+        fmt.Println(sizeMissingMsg)
+        fallthrough
+    case l < 1:
+        fmt.Println(usageMsg)
+        return
+    }
+
+    op := args[0]
+    if strings.IndexAny(op, validOps) == invalidOp {
+        fmt.Println(invalidOpMsg)
+        return
+    }
+
+    max, err := strconv.Atoi(args[1])
+    if err != nil {
+        fmt.Println("Please enter a valid number")
+        return
+    }
+ 
+    // print horizontal numbers line
+    fmt.Printf("%5s", "X")
+    for i := 0; i <= max; i++ {
+        fmt.Printf("%5d", i)
+    }
+    fmt.Println()
+
+    // print vertical numbers line
+    for i := 0; i <= max; i++ {
+
+        fmt.Printf("%5d", i)
+
+        for j := 0; j <= max; j++ {
+            var res int
+            switch op {
+            case "+":
+                res = i + j
+            case "-":
+                res = i - j
+            case "*":
+                res = i * j
+            case "/":
+                if j != 0 {
+                    res = i / j
+                }
+            case "%":
+                if j != 0 {
+                    res = i % j
+                }
+            }
+            fmt.Printf("%5d", res)
+        }
+        fmt.Println()
+    }
 }

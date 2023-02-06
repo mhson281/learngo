@@ -27,5 +27,36 @@ package main
 //    2 + 4 + 6 + 8 + 10 = 30
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "os"
+    "strconv"
+)
 func main() {
+    if len(os.Args) != 3 {
+        fmt.Println("Please enter min and max number")
+        return
+    }
+
+    var sum int
+    min, err1 := strconv.Atoi(os.Args[1])
+    max, err2 := strconv.Atoi(os.Args[2])
+
+    if err1 != nil || err2 != nil || max <= min {
+        fmt.Println("Please enter the correct min nad max range")
+        return
+    }
+
+    for i := min; i <= max; i++ {
+        if i % 2 != 0 {
+            continue
+        }
+
+        fmt.Print(i)
+        sum += i
+        if i < max  {
+            fmt.Print(" + ")
+        }
+    }
+    fmt.Printf(" = %d\n", sum)
 }
