@@ -1,12 +1,5 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
+
 
 // ---------------------------------------------------------
 // EXERCISE: Random Messages
@@ -33,6 +26,54 @@ package main
 //  go run main.go 5
 //    YOU LOST. TRY AGAIN?
 // ---------------------------------------------------------
+import ("time"; "math/rand"; "strconv"; "os"; "fmt")
+
+const maxTurns = 5
 
 func main() {
+    rand.Seed(time.Now().UnixNano())
+
+    if len(os.Args) != 2 {
+        fmt.Println("You need to take a guess what the number is!!")
+        return
+    }
+
+    args := os.Args[1:]
+    guess, err := strconv.Atoi(args[0])
+    if err != nil {
+        fmt.Println("Not a number.")
+        return
+    } else if guess < 0 {
+        fmt.Println("Please enter a number greater than 0")
+        return
+    }
+
+    for turn := 1; turn <= maxTurns; turn++ {
+        n := rand.Intn(guess + 1)
+
+        if n == guess {
+            switch rand.Intn(3) {
+            case 0:
+                fmt.Println("You're awesome")
+                return
+            case 1:
+                fmt.Println("You won!")
+                return
+            case 2: 
+                fmt.Println("Perfect!")
+                return
+            }
+
+
+        }
+    } 
+
+    switch rand.Intn(3) {
+    case 0:
+    fmt.Println("You loser!")
+    case 1:
+    fmt.Println("Suck it")
+    case 2:
+    fmt.Println("Try harder, fool")
+    }
 }
