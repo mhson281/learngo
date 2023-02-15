@@ -6,8 +6,6 @@
 // In-person training  : https://www.linkedin.com/in/inancgumus/
 // Follow me on twitter: https://twitter.com/inancgumus
 
-package main
-
 // ---------------------------------------------------------
 // EXERCISE: Path Searcher
 //
@@ -78,6 +76,39 @@ package main
 //    #1 : "/usr/local/bin"
 //    #2 : "/Users/inanc/go/bin"
 // ---------------------------------------------------------
+package main
+
+import (
+	"fmt"
+	"os"
+    "strings"
+    "path/filepath"
+)
+
 
 func main() {
+    filepath := filepath.SplitList(os.Getenv("PATH"))
+    query := os.Args[1:]
+    
+    if len(query) < 1 {
+        fmt.Println("Please enter a word to search for")
+        return
+    }
+
+	// after the inner loop breaks
+	// this parent loop will look for the next queried word
+	for _, q := range query {
+
+		// "break" will terminate this loop
+		for i, w := range filepath {
+
+            q, w = strings.ToLower(q), strings.ToLower(w) 
+
+			if strings.Contains(w, q){
+				fmt.Printf("#%-2d: %q\n", i+1, w)
+			}
+		}
+
+	}
 }
+
