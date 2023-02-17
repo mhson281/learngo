@@ -40,6 +40,21 @@ package main
 //   upper: ["KAFKA'S REVENGE" "STAY GOLDEN" "EVERYTHINGSHIP"]
 //   lower: ["kafka's revenge" "stay golden" "everythingship"]
 // ---------------------------------------------------------
+import ("strings"; "fmt")
 
 func main() {
+    books := [3]string{"Kafka's Revenge", "Stay Golden", "Everythingship"}
+
+    var upper [3]string
+    var lower [3]string
+
+    for i, v := range books {
+        upper[i] = strings.ToUpper(v)
+        lower[i] = strings.ToLower(v)
+    }
+
+    fmt.Printf("Books Array: %q\n", books)
+    fmt.Printf("Upper Books Array: %q\n", upper)
+    fmt.Printf("Lower Books Array: %q\n", lower)
+
 }
