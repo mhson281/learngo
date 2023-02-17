@@ -44,6 +44,24 @@ package main
 //   go run main.go Socrates
 //     Socrates feels terrible 😩
 // ---------------------------------------------------------
+import ("math/rand"; "os"; "fmt"; "time")
+
+func getMood(name string) string {
+    rand.Seed(time.Now().UnixNano())
+    moodArray := [...]string{"good 👍", "happy 😀", "awesome 😎", "terrible 😩", "sad 😞", "bad 👎"}
+
+    n := rand.Intn(len(moodArray))
+
+    return name + " feels " + moodArray[n]
+}
 
 func main() {
+    args := os.Args[1:]
+    if len(args) != 1 {
+        fmt.Println("Please enter a name")
+        return
+    }
+
+    fmt.Println(getMood(args[0]))
+
 }
