@@ -45,5 +45,35 @@ package main
 //     1.00 USD is 113.02 JPY
 // ---------------------------------------------------------
 
+import ("os"; "fmt"; "strconv")
+
 func main() {
+    const (
+        EUR = iota
+        GBP
+        JPY
+    )
+    
+    rates := [...]float64{
+        EUR: 0.88,
+        GBP: 0.78,
+        JPY: 113.02,
+    }
+
+    amount := os.Args[1:]
+    if len(amount) != 1 {
+        fmt.Println("Please provide the amount to be converted")
+        return
+    }
+
+    f, err := strconv.ParseFloat(amount[0], 64)
+    if err != nil {
+        fmt.Println("Invalid amount. It should be a number")
+        return
+    }
+
+    fmt.Printf("%.2f USD is %.2f EUR\n", f, f * rates[EUR])
+    fmt.Printf("%.2f USD is %.2f GBP\n", f, f * rates[GBP])
+    fmt.Printf("%.2f USD is %.2f JPY\n", f, f * rates[JPY])
+        
 }

@@ -39,5 +39,30 @@ package main
 //     Average: 2
 // ---------------------------------------------------------
 
+import ("fmt"; "os"; "strconv")
+
 func main() {
+    args := os.Args[1:]
+    if len(args) > 5 || len(args) < 1{
+        fmt.Println("Please tell me numbers (maximum 5 numbers).")
+        return
+    }
+
+    var (
+        sum float64
+        nums [5]float64
+        numCount float64
+    )
+    for index, value := range args{
+        if n, err := strconv.ParseFloat(value, 64); err == nil {
+            nums[index] = n
+            numCount++
+            sum += n
+        } else {
+            continue
+        }
+    }
+
+    fmt.Printf("Your number: %v\n", nums)
+    fmt.Printf("Average: %.0f\n", sum / numCount)
 }

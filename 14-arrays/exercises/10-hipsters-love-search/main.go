@@ -58,5 +58,34 @@ package main
 //   + Check out the strings package for more information.
 // ---------------------------------------------------------
 
+import ("fmt"; "os"; "strings")
+
 func main() {
+    books := [...]string{
+    "Kafka's Revenge",
+    "Stay Golden",
+    "Everythingship",
+    "Kafka's Revenge 2nd Edition",
+    }
+
+    args := os.Args[1:]
+    if len(args) != 1 {
+        fmt.Println("Please enter a search term")
+        return
+    }
+
+    keyword := strings.ToLower(args[0])
+
+    var available bool
+    fmt.Println("Search Results:")
+    for _, book := range books {
+        if strings.Contains(strings.ToLower(book), keyword) {
+            fmt.Printf("+ %s\n", book)
+            available = true
+        }
+    }
+    
+    if !available {
+        fmt.Printf("We don't have the book: %s\n", keyword)
+    }
 }

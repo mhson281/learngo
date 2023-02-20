@@ -29,5 +29,25 @@ package main
 //   Charles         Darwin          fittest
 // ---------------------------------------------------------
 
+import ("fmt"; "strings")
+
 func main() {
+	names := [...][3]string{
+		{"First Name", "Last Name", "Nickname"},
+		{"Albert", "Einstein", "emc2"},
+		{"Isaac", "Newton", "apple"},
+		{"Stephen", "Hawking", "blackhole"},
+		{"Marie", "Curie", "radium"},
+		{"Charles", "Darwin", "fittest"},
+	}
+
+    for i := range names {
+        n := names[i]
+        
+        if i == 1 {
+            fmt.Println(strings.Repeat("=", 50))
+        }
+
+        fmt.Printf("%-20s %-20s %-20s\n",n[0], n[1], n[2])
+    }
 }

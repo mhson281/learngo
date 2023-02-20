@@ -46,5 +46,38 @@ package main
 //     [0 0 1 4 5]
 // ---------------------------------------------------------
 
+import ("fmt"; "os"; "strconv")
+
 func main() {
+    args := os.Args[1:]
+    if len(args) < 1 {
+        fmt.Println("Please give me up to 5 numbers")
+        return
+    } else if len(args) > 5 {
+        fmt.Println("Sorry. Go arrays are fixed. So, for now, I'm only supporting 5 numbers...")
+        return
+    }
+
+    var nums [5]int
+    for i, v := range args {
+        if n, err := strconv.Atoi(v); err == nil {
+            nums[i] = n
+        } else {
+            nums[i] = 0
+        }
+    }
+
+    fmt.Println(bubbleSort(nums))
+}
+
+func bubbleSort(array [5]int) [5]int {
+    len := len(array)
+    for i := 0; i < len-1; i++ {
+        for j := 0; j < len-1; j++ {
+            if array[j] > array[j+1] {
+                array[j], array[j+1] = array[j+1], array[j]
+            }
+        }
+    }
+    return array
 }
