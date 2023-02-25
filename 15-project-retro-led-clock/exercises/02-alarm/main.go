@@ -77,7 +77,9 @@ func main() {
 				next := clock[index][line]
 				if digit == colon && sec%2 == 0 {
 					next = "   "
-				}
+				} else if sec % 10 == 0 {
+                    clock = alarm
+                }
 				fmt.Print(next, "  ")
 			}
 			fmt.Println()
