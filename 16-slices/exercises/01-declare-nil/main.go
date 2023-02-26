@@ -35,5 +35,16 @@ package main
 //  alives   : []bool 0 true
 // ---------------------------------------------------------
 
+import "fmt"
 func main() {
+    var names []string
+    fmt.Printf("%T %d %v\n", names, len(names), names == nil )
+    var distances []int
+    fmt.Printf("%T %d %v\n", distances, len(distances), distances == nil )
+    var data []uint8
+    fmt.Printf("%T %d %v\n", data, len(data), data == nil )
+    var ratios []float64
+    fmt.Printf("%T %d %v\n", ratios, len(ratios), ratios == nil )
+    var alives []bool
+    fmt.Printf("%T %d %v\n", alives, len(alives), alives == nil )
 }
