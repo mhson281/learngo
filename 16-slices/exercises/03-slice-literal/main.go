@@ -50,11 +50,11 @@ func main() {
 		alives    []bool    // Up/Down status of web servers
 	)
 
-	names = []string{}
-	distances = []int{}
-	data = []byte{}
-	ratios = []float64{}
-	alives = []bool{}
+	names = []string{"casper", "casper", "casper"}
+	distances = []int{45, 43, 23, 12, 12}
+	data = []byte{12, 31, 38, 12, 122}
+	ratios = []float64{32.0, 312.12}
+	alives = []bool{true, false, false, true}
 
 	fmt.Printf("names    : %T %d %t\n", names, len(names), names == nil)
 	fmt.Printf("distances: %T %d %t\n", distances, len(distances), distances == nil)
