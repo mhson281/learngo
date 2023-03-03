@@ -82,6 +82,30 @@ Istanbul,500,10,5,1000000`
 		separator = ","
 	)
 
-    header := strings.Split(header, ",")
-    fmt.Println(header)
+    var titles []string
+    titles = strings.Split(header, ",")
+
+    for i, value := range titles{
+        if i == len(titles) - 1 {
+            fmt.Printf("%-15s\n", value)
+            break
+        }
+        fmt.Printf("%-15s", value)
+    }
+
+    fmt.Println(strings.Repeat("=", 75))
+
+    var houses []string
+    houses = strings.Split(data, "\n")
+
+    for _, house := range houses{
+        values := strings.Split(house, ",")
+        for i, value := range values{
+            if i == len(values) - 1 {
+                fmt.Printf("%-15s\n", value)
+                break
+            }
+            fmt.Printf("%-15s", value)
+        }
+    }
 }
