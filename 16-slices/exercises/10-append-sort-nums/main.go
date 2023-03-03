@@ -42,5 +42,25 @@ package main
 //
 // ---------------------------------------------------------
 
+import ("os"; "fmt"; "strconv"; "sort")
+
 func main() {
+    args := os.Args[1:]
+    var nums []int
+
+    if len(args) < 1 {
+        fmt.Println("provide a few numbers")
+        return
+    }
+
+    for _, arg := range args{
+        num, err := strconv.Atoi(arg)
+        if err != nil{
+            fmt.Println("Not valid number")
+            return
+        }
+        nums = append(nums, num)
+    }
+    sort.Ints(nums)
+    fmt.Println(nums)
 }

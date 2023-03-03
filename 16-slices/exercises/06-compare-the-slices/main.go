@@ -33,7 +33,26 @@ package main
 //
 // ---------------------------------------------------------
 
+import ("fmt"; "strings"; "sort")
 func main() {
-	// namesA := "Da Vinci, Wozniak, Carmack"
-	// namesB := []string{"Wozniak", "Da Vinci", "Carmack"}
+	namesA := "Da Vinci, Wozniak, Carmack"
+    namesASplit := strings.Split(namesA, ", ")
+    sort.Strings(namesASplit)
+    
+	namesB := []string{"Wozniak", "Da Vinci", "Carmack"}
+    sort.Strings(namesB)
+
+    fmt.Printf("%v\n", namesASplit)
+    fmt.Printf("%v\n", namesB)
+
+    if len(namesASplit) == len(namesB){
+        for i := range namesASplit{
+            if namesASplit[i] != namesB[i]{
+                return
+            }
+        }
+        fmt.Println("They are equal")
+    }
+
+
 }

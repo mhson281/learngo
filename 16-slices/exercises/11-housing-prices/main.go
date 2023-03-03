@@ -66,6 +66,11 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "strings"
+    //"strconv"
+)
 func main() {
 	const (
 		header = "Location,Size,Beds,Baths,Price"
@@ -76,4 +81,7 @@ Istanbul,500,10,5,1000000`
 
 		separator = ","
 	)
+
+    header := strings.Split(header, ",")
+    fmt.Println(header)
 }
