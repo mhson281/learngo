@@ -56,7 +56,32 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "strings"
+    "strconv"
+)
 func main() {
-	// uncomment the declaration below
-	// data := "2 4 6 1 3 5"
+	data := "2 4 6 1 3 5"
+    dataSlice := strings.Fields(data)
+
+    var nums []int 
+    
+    for _, v := range dataSlice{
+        n,_ := strconv.Atoi(v)
+        nums = append(nums, n)
+    }
+
+    var evens, odds []int
+    evens = nums[0:3]
+    odds = nums[3:]
+    fmt.Printf("nums            : %v\n", dataSlice)
+    fmt.Printf("evens           : %v\n", evens)
+    fmt.Printf("odds            : %v\n", odds)
+    fmt.Printf("middles         : %v\n", nums[2:4])
+    fmt.Printf("first 2         : %v\n", nums[:2])
+    fmt.Printf("last 2          : %v\n", nums[4:])
+
+    fmt.Printf("evens last 1    : %v\n", evens[len(evens)-1:])
+    fmt.Printf("odds last 2     : %v\n", odds[len(odds)-2:])
 }

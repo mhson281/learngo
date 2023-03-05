@@ -111,7 +111,40 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "os"
+    "strconv"
+)
 func main() {
-	// uncomment the slice below
-	// ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+	ships := []string{"Normandy", "Verrikan", "Nexus", "Warsaw"}
+
+    const (
+        errMessage = `Provide only the [starting] and [ending] positions`
+        wrongFormat = `Please provide a numerical number larger than 0 as indexes`
+        outOfBound = `Please enter a number a number between 0 and 3`
+    )
+
+    start, stop := 0, len(ships)
+
+    switch indexes := os.Args[1:]; len(indexes) {
+    default:
+        fallthrough
+    case 0:
+        fmt.Println(errMessage)
+        return
+    case 2: 
+        stop,_ = strconv.Atoi(indexes[1])
+        fallthrough
+    case 1:
+        start,_ = strconv.Atoi(indexes[0])
+    } 
+
+    if l := len(ships); start < 0 || start > l || stop > l || start > stop {
+        fmt.Println("Wrong positions")
+        return
+    }
+
+    fmt.Printf("%v\n", ships)
+    fmt.Println(ships[start:stop])
 }
