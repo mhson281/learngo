@@ -123,6 +123,11 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "os"
+    "strings"
+)
 func main() {
 	const (
 		data = `Location,Size,Beds,Baths,Price
@@ -133,4 +138,40 @@ Istanbul,500,10,5,1000000`
 
 		separator = ","
 	)
+
+    rows := strings.Split(data, "\n")
+    cols := strings.Split(rows[0], separator)
+
+    start, stop := 0, len(cols)
+
+    args := os.Args[1:]
+    for i, v := range cols {
+        l := len(args)
+
+        if l >= 1 && v == args[0] {
+            start = i
+        }
+
+        if l == 2 && v == args[1] {
+            stop = i + 1
+        }
+    }
+
+    if start >= stop {
+        start = 0
+    }
+
+    for i, row := range rows {
+        cols := strings.Split(row, separator)
+
+        for _,h := range cols[start:stop] {
+            fmt.Printf("%-15s", h)
+        }
+        fmt.Println()
+
+        if i == 0 {
+            fmt.Println()
+        }
+    }
+
 }
