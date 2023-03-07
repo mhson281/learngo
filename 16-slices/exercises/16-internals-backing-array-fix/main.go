@@ -41,7 +41,10 @@ func main() {
 	//
 	// Ensure that nums slice never changes even though
 	// the mine slice changes.
-	mine := nums
+    // wrong solution but same result
+    // This only provide a slice of the original slice, still the same backing array
+    // mine := nums[3:]
+    mine := append([]int{}, nums[3:]...)
 	// ----------------------------------------
 
 	// DON'T TOUCH THE FOLLOWING CODE
