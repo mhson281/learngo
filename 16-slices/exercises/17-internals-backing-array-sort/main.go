@@ -9,6 +9,7 @@
 package main
 
 import (
+    "sort"
 	"fmt"
 )
 
@@ -48,7 +49,15 @@ func main() {
 	}
 
 	fmt.Println("Original:", items)
-	// ADD YOUR CODE HERE
+    midIndex := len(items) / 2
+    midThree := items[midIndex-1:midIndex+2]
+    sort.Strings(midThree)
+
+
+    // This will create a new backing array and append, not the answer 
+    //middleThree := append([]string(nil), items[midIndex-1:midIndex+2]...)
+    //sort.Strings(middleThree)
+    //sortedItems := append(append(items[:midIndex-1], middleThree..., ), items[midIndex+2:]...)
 	fmt.Println()
 	fmt.Println("Sorted  :", items)
 }
