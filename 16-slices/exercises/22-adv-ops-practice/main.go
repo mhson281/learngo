@@ -31,13 +31,14 @@ func main() {
 	//
 	//
 	// ...
-	// s.Show("1st step", names)
+    names := make([]string, 5)
+	s.Show("1st step", names)
 
 	// ########################################################
 	//
 	// #2: Append the following names to the names slice:
 	//
-	//     "einstein", "tesla", "aristotle"
+	names = append(names,"einstein", "tesla", "aristotle")
 	//
 	//     Print the names slice.
 	//
@@ -45,7 +46,7 @@ func main() {
 	//
 	//
 	// ...
-	// s.Show("2nd step", names)
+	s.Show("2nd step", names)
 
 	// ########################################################
 	//
@@ -57,15 +58,15 @@ func main() {
 	//     to the first index.
 	//
 	//     Then append the following names to the slice:
-	//
-	//     "einstein", "tesla", "aristotle"
+	names = make([]string, 0, 5)
+	names = append(names,"einstein", "tesla", "aristotle")
 	//
 	//     Expected output:
 	//     ["einstein", "tesla", "aristotle" "" ""]
 	//
 	//
 	// ...
-	// s.Show("3rd step", names)
+	s.Show("3rd step", names)
 
 	// ########################################################
 	//
@@ -79,11 +80,12 @@ func main() {
 	//
 	//
 	// Array (uncomment):
-	// moreNames := [...]string{"plato", "khayyam", "ptolemy"}
-	//
+	moreNames := [...]string{"plato", "khayyam", "ptolemy"}
+    copy(names[3:5], moreNames[:2])
+    names = names[:cap(names)]
 	// ...
 	//
-	// s.Show("4th step", names)
+	s.Show("4th step", names)
 
 	// ########################################################
 	//
@@ -97,19 +99,21 @@ func main() {
 	//     allocations occur for the `clone` slice.
 	//
 	//     Print the clone slice before and after the append.
-	//
+    clone := make([]string, 3, 5)
+    copy(clone, names[len(names)-3:])
+	s.Show("5th step (before append)", clone)
 	//
 	// ...
-	// s.Show("5th step (before append)", clone)
-	//
-	// ...
-	// s.Show("5th step (after append)", clone)
+    clone = append(clone, names[:2]...)
+	s.Show("5th step (after append)", clone)
 
 	// ########################################################
 	//
 	// #6: Slice the `clone` slice between 2nd and 4th (inclusive)
 	//     elements into a new slice: `sliced`.
-	//
+    sliced := clone[2:]
+    sliced = append(sliced, "hypatia")
+    clone[2] = "elder"
 	//     Append "hypatia" to the `sliced`.
 	//
 	//     Ensure that new backing array allocation "occurs".
@@ -124,7 +128,7 @@ func main() {
 	//
 	//
 	// ...
-	// s.Show("6th step", clone, sliced)
+	s.Show("6th step", clone, sliced)
 }
 
 //
