@@ -69,5 +69,14 @@ func main() {
 
 	// ADD YOUR CODE BELOW:
 	// ...
+    lyric = append([]string{"yesterday"}, lyric...)
+
+    const (
+        n, m = 8, 13
+    )
+
+    lyric = append(lyric, lyric[n:m]...)
+    lyric = append(lyric[:n], lyric[m:]...)
+
 	fmt.Printf("%s\n", lyric)
 }
