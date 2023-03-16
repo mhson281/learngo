@@ -47,5 +47,32 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "os"
+    "io/ioutil"
+    "fmt"
+    "sort"
+)
+
 func main() {
+    fruits := os.Args[1:]
+    if len(fruits) == 0 {
+        fmt.Println("Send me some items and I will sort them")
+        return
+    }
+    sort.Strings(fruits)
+    
+    var fruitsInByte []byte
+    
+    for _, fruit := range(fruits) {
+        fruitsInByte = append(fruitsInByte, fruit...)
+        fruitsInByte = append(fruitsInByte, '\n')
+    }
+    
+    err := ioutil.WriteFile("sorted.txt", fruitsInByte, 0644)
+
+    if err != nil{
+        fmt.Println(err)
+        return
+    }
 }
