@@ -79,9 +79,13 @@ func main() {
 	// ================================================
 	// #1: Make a new slice with the exact size needed.
 
-	_ = reqs // remove this when you start
+    l := len(reqs)
+	size := l / N 
+	if l%N != 0 {
+		size++
+	}
 
-	size := 0 // you need to find the size.
+
 	daily := make([][]int, 0, size)
 
 	// ================================================
@@ -96,8 +100,19 @@ func main() {
 	//  [900, 800, 600]
 	//  [750, 250, 100]
 	// ]
+	for N <= len(reqs) {
+		daily = append(daily, reqs[:N]) // append the daily requests
+		reqs = reqs[N:]                 // move the slice pointer for the next day
+	}
 
-	_ = daily // remove this when you start
+	// add the residual data
+	if len(reqs) > 0 {
+		daily = append(daily, reqs)
+	}
+    
+    fmt.Printf("%v\n", daily)
+    fmt.Printf("%v\n", reqs)
+
 
 	// ================================================
 	// #3: Print the results
@@ -105,6 +120,23 @@ func main() {
 	// Print a header
 	fmt.Printf("%-10s%-10s\n", "Day", "Requests")
 	fmt.Println(strings.Repeat("=", 20))
+
+	var grand int
+
+	for i, day := range daily {
+		var sum int
+
+		for _, req := range day {
+			sum += req
+			fmt.Printf("%-10d%-10d\n", i+1, req)
+		}
+
+		fmt.Printf("%9s %-10d\n\n", "TOTAL:", sum)
+
+		grand += sum
+	}
+
+	fmt.Printf("%9s %-10d\n", "GRAND:", grand)
 
 	// Loop over the daily slice and its inner slices to find
 	// the daily totals and the grand total.
