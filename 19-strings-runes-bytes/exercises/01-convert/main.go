@@ -31,15 +31,26 @@ package main
 //  go standard library
 // ---------------------------------------------------------
 
+import ("fmt")
+
 func main() {
-	// Please uncomment the code below
 
-	// words := []string{
-	// 	"gopher",
-	// 	"programmer",
-	// 	"go language",
-	// 	"go standard library",
-	// }
+	 words := []string{
+	 	"gopher",
+	 	"programmer",
+	 	"go language",
+	 	"go standard library",
+	 }
 
-	// var bwords [][]byte
+	var bwords [][]byte
+
+    for _,word := range words {
+        bword := []byte(word)
+        fmt.Println(bword)
+        bwords = append(bwords, bword)
+    }
+
+    for _,bword := range bwords {
+        fmt.Println(string(bword))
+    }
 }
