@@ -24,12 +24,25 @@ package main
 //
 // ---------------------------------------------------------
 
+import "fmt"
+
 func main() {
 	// Hint: Store phone numbers as text
 
 	// #1
 	// Key        : Last name
 	// Element    : Phone number
+    var (
+        phone map[string]string
+        products map[int]bool
+        phones map[string][]string
+        customer map[int]int
+    )
+
+    fmt.Printf("phone: %#v\n", phone)
+    fmt.Printf("products: %#v\n", products)
+    fmt.Printf("phones: %#v\n", phones)
+    fmt.Printf("customer: %#v\n", customer)
 
 	// #2
 	// Key        : Product ID

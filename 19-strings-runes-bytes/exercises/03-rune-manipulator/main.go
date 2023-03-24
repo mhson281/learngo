@@ -17,6 +17,10 @@ package main
 //  Please run the solution.
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "unicode/utf8"
+)
 func main() {
 	words := []string{
 		"cool",
@@ -26,13 +30,17 @@ func main() {
 		"read 🤓",
 	}
 
-	_ = words
+    for _,s := range words {
+        fmt.Printf("%s has a length of %d and a rune count of %d\n", s, len(s), utf8.RuneCountInString(s))
+		fmt.Printf("\tbytes   : %x \n", s)
 
-	// Print the byte and rune length of the strings
-	// Hint: Use len and utf8.RuneCountInString
+        fmt.Print("\trunes   : ")
+        for _, r := range s {
+            fmt.Printf("%x ", r)
+        }
+        fmt.Println()
+    }
 
-	// Print the bytes of the strings in hexadecimal
-	// Hint: Use % x verb
 
 	// Print the runes of the strings in hexadecimal
 	// Hint: Use % x verb

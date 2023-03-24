@@ -69,5 +69,52 @@ package main
 //
 // ---------------------------------------------------------
 
+import "fmt"
+
 func main() {
+    phoneNumbers := map[string]string{
+        "bowen": "202-555-0179",
+        "dulin":  "03.37.77.63.06",
+        "greco":  "03489940240",
+    }
+
+    productIDs := map[string]bool{
+        "617841573": true,
+        "879401371": false,
+        "576872813": true,
+    }
+
+    altPhoneNumber := map[string][]string {
+        "bowen":  {"202-555-0179"},
+        "dulin":  {"03.37.77.63.06","03.37.70.50.05","02.20.40.10.04"},
+        "greco":  {"03489940240", "03489900120"},
+    }
+
+    shopInventory := map[string]map[int]int {
+        "100": {617841573:4, 576872813:2},
+        "101": {576872813:5, 657473833:20},
+        "102": {},
+    }
+
+    person, phone := "dulin", "N/A"
+    if value, ok := phoneNumbers[person]; ok {
+            phone = value
+        }
+    fmt.Printf("Dulin's phone number: %v\n", phone)
+
+
+    productID, status := "879401371", "available"
+    if !productIDs[productID] {
+        status = "not " + status
+    }
+    fmt.Printf("Product ID #%s is %s\n", productID, status)
+
+    person, alt := "greco", "N/A"
+    if phones := altPhoneNumber[person]; len(phones) >= 2 {
+        alt = phones[1]
+    }
+    fmt.Printf("%s's 2nd phone number: %s\n", person, alt)
+
+    cID, pID := "101", 576872813
+    fmt.Printf("Customer #%s is going to buy %d from Product ID #%d\n", cID, shopInventory[cID][pID], pID)
 }
