@@ -52,25 +52,42 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "os"
+    "fmt"
+    "sort"
+)
 func main() {
-	// House        Student Name
-	// ---------------------------
-	// gryffindor   weasley
-	// gryffindor   hagrid
-	// gryffindor   dumbledore
-	// gryffindor   lupin
-	// hufflepuf    wenlock
-	// hufflepuf    scamander
-	// hufflepuf    helga
-	// hufflepuf    diggory
-	// ravenclaw    flitwick
-	// ravenclaw    bagnold
-	// ravenclaw    wildsmith
-	// ravenclaw    montmorency
-	// slytherin    horace
-	// slytherin    nigellus
-	// slytherin    higgs
-	// slytherin    scorpius
-	// bobo         wizardry
-	// bobo         unwanted
+
+    houses := map[string][]string{
+        "gryffindor": {"weasley", "hagrid", "dumbledore", "lupin"},
+        "hufflepuf": {"wenlock", "scamander", "helga", "diggory"},
+        "ravenclaw": {"bagnold", "wildsmith", "montmorency"},
+        "slytherin": {"horace", "nigellus", "higgs", "scorpius"},
+        "bobo": {"wizardry", "unwanted"},
+    }
+
+    // delete bobo from list of houses
+    delete(houses, "bobo")
+
+    args := os.Args[1:] 
+
+    if len(args) != 1 {
+        fmt.Println("Please type a Hogwarts house name.")
+        return
+    }
+
+	house, students := args[0], houses[args[0]]
+	if students == nil {
+		fmt.Printf("Sorry. I don't know anything about %q.\n", house)
+		return
+	}
+
+    clone := append([]string(nil), students...)
+    sort.Strings(clone)
+
+    fmt.Printf("~~~ %s students ~~~\n\n", args[0])
+    for _, wizard := range(clone) {
+        fmt.Printf("\t+ %s\n", wizard)
+    }
 }
