@@ -36,5 +36,27 @@ package main
 //  Please run the solution to see the output.
 // ---------------------------------------------------------
 
+import "fmt"
+
+type item struct {
+    id int
+    name string
+    price int
+}
+
+type game struct {
+    item 
+    genre string
+}
+
 func main() {
+    games := []game{
+        {item: item{id: 1, name: "god of war", price: 50}, genre: "action adventure"},
+        {item: item{id: 2, name: "x-com 2", price: 30}, genre: "strategy"},
+        {item: item{id: 3, name: "minecraft", price: 20}, genre: "sandbox"},
+    }
+
+    for _, game := range games {
+        fmt.Printf("%d\t%-15s\t%-20d\t%s\n", game.item.id, game.name, game.price, game.genre)
+    }
 }
