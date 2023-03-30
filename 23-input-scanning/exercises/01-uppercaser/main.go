@@ -24,5 +24,17 @@ package main
 //  Please run the solution to see the expected output.
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "os"
+    "strings"
+    "bufio"
+)
 func main() {
+    in := bufio.NewScanner(os.Stdin)
+
+    for in.Scan() {
+        fmt.Println(strings.ToUpper(in.Text()))
+    }
+
 }

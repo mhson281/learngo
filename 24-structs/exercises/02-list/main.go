@@ -28,7 +28,27 @@ package main
 //  Please run the solution and try the program with list and
 //  quit commands.
 // ---------------------------------------------------------
+import (
+    "fmt"
+    "os"
+    "bufio"
+)
+
+
+type item struct {
+    id int
+    name string
+    price int
+}
+
+type game struct {
+    item 
+    genre string
+}
 
 func main() {
-	// use your solution from the previous exercise
-}
+    games := []game{
+        {item: item{id: 1, name: "god of war", price: 50}, genre: "action adventure"},
+        {item: item{id: 2, name: "x-com 2", price: 30}, genre: "strategy"},
+        {item: item{id: 3, name: "minecraft", price: 20}, genre: "sandbox"},
+    }
