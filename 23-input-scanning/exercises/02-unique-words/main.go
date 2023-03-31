@@ -31,5 +31,27 @@ package main
 //
 // ---------------------------------------------------------
 
+import (
+    "fmt"
+    "os"
+    "bufio"
+    "strings"
+)
+
 func main() {
+    in := bufio.NewScanner(os.Stdin)
+    in.Split(bufio.ScanWords)
+
+    wordCount, words := 0, make(map[string]bool)
+
+    for in.Scan() {
+        word := strings.ToLower(in.Text())
+        words[word] = true
+        wordCount++
+    }
+
+
+    fmt.Printf("Total Words: %d, Unique Words: %d\n", wordCount, len(words))
+
+
 }
