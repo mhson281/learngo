@@ -52,3 +52,32 @@ func main() {
         {item: item{id: 2, name: "x-com 2", price: 30}, genre: "strategy"},
         {item: item{id: 3, name: "minecraft", price: 20}, genre: "sandbox"},
     }
+
+    fmt.Printf("Minh's game store has %d games", len(games))
+
+	in := bufio.NewScanner(os.Stdin)
+
+	for {
+		fmt.Printf(`
+  > list   : lists all the games
+  > quit   : quits
+    `)
+
+    fmt.Println()
+
+    if !in.Scan() {
+        break
+    }
+
+    switch in.Text() {
+        case "quit":
+            fmt.Println("See you next time!")
+            return
+        case "list":
+            for _, game := range games {
+                fmt.Printf("%d\t%-15s\t%-20d\t%s\n", game.item.id, game.name, game.price, game.genre)
+            }
+
+        }
+    }
+}
