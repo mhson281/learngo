@@ -67,5 +67,42 @@ package main
 //
 // ---------------------------------------------------------
 
+
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+)
+
 func main() {
+	args := os.Args[1:]
+	if len(args) == 0 {
+		fmt.Println("Provide a directory")
+		return
+	}
+
+    var dirs []byte
+
+    for _,dir := range args {
+        files, err := ioutil.ReadDir(dir)
+        if err != nil {
+            fmt.Println(err)
+            return
+        }
+
+        dirs = append(dirs, dir+"/\n"...)
+        for _, file := range files {
+            if file.IsDir() {
+                dirs = append(dirs, "\t"+file.Name()+"/\n"...)
+            }
+        }
+        dirs = append(dirs, "\n"...)
+    }
+
+    err := ioutil.WriteFile("dirs.txt", dirs, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
+
